@@ -8,32 +8,42 @@ This is my documentation of the design & implementatio of City of Vancouver Data
 ## Project Title: DAP Design & Implementation for 311 Contact Center of City of Vancouver
 * Customer initiated service requests received by 3-1-1 Contact Centre from 2022-2024.
 * Service requests refer only to those call types that generate a requ​​es​​t to a City of Vancouver department to provide service.
-The City of Vancouver is increasingly leveraging data to improve its operations and services to citizens. This document outlines the implementation of an AWS Data Analytic Platform (DAP) designed to address the city's needs in various areas, including Animal control inventory register analysis, voting records analysis, 3-1-1 contact center analysis, and others. The DAP offers a secure, scalable, and cost-effective solution for data management, processing, and analysis, empowering city officials to make data-driven decisions for the benefit of Vancouver residents.
+* The City of Vancouver is increasingly leveraging data to improve its operations and services to citizens.
+* This document outlines the implementation of an AWS Data Analytic Platform (DAP) designed to address the city's needs in 3-1-1 service request analysis.
+* The DAP offers a secure, scalable, and cost-effective solution for data management, processing, and analysis, empowering city officials to make data-driven decisions for the benefit of Vancouver residents.
 ## Project Objective:
-* Data Protection design and implementation.
-* Data Governance design and implementation.
-* Data Monitoring design and implementation.
+* To design and implement DAP for City of vancouver's 3-1-1 Service Requests..
 ## Datasets
 * The Dataset used is taken from [City of Vancouver Open Data Portal](https://opendata.vancouver.ca/explore/dataset/3-1-1-service-requests/information/?disjunctive.department&disjunctive.service_request_type&disjunctive.status&disjunctive.closure_reason&disjunctive.local_area&disjunctive.channel) for the category of "3-1-1 Service Request metrics"<br>
 [cumulative_3-1-1-service-requests_2023_open.xlsx](https://github.com/user-attachments/files/17021197/cumulative_3-1-1-service-requests_2023_open.xlsx)
  This dataset contains location information such as address or intersection where service was requested and the local area corresponding to the case (incident) location.
 ## Methodology:
-* The process involves 3 different steps explained in detail below:
+* The process involves different steps explained in detail below:
 ### Step1: Data Analytical Question Formulation
-* In this dataset I will be using the 3-1-1 Contact center services. The main metric we will be suing here will be about “What is the count of Calls Abandoned for each month of the year respectively.” For calculating this we can use the ‘BI_ID’, ‘Calls_Abandoned’, ‘Date’ columns.
+* In this dataset I will be using the 3-1-1 Service Requests services. The main metric we will be suing here will be about “What is the count of service request for each type of requests respectively.” I felt after having a business established next comes the part where we can utilise various services available from the City of Vancouver for its residents. I felt we can understand this from the information of 3-1-1 Service requests. 
 ### Step2: Data Discovery
-* After the identification of analytical questions above, the next step was the identification of data. Having a virtually developed data structure, the water distribution mains dataset was catalogued through AWS Glue Data Catalogue which enhanced the indexing. Such important fields as pipe location, diameter, material, installation date and history of maintenance were captured in the dataset.
-* It was important to understand these fields to be able to design the succeeding data processing and analysis workflows.I have selected the information of “3-1-1 Contact Center” from (City of Vancouver, n.d) portal.
+* After the identification of analytical questions above, the next step was the identification of data. Having a virtually developed data structure of metrics and columns we can use from dataset we can proceed.
+* It was important to understand these fields to be able to design the succeeding data processing and analysis workflows.
+* I have selected the information of “3-1-1 Service Requests” from (City of Vancouver, n.d) portal.
 ### Step3: Data Storage Design
 * In this part we will mainly be discussing on storage. The storage design for the application is raw data storage, Amazon S3, structured data, and Amazon Redshift. This way, the data is retained at scale, and retrieval is very efficient.
-* The calls data od 3-1-1 Contact center as mentioned above are stored in a separate table so that historical data does not get updated and modified and is easily accessible for comparisons.
+* The calls data od 3-1-1 Service Requests as mentioned above are stored in a separate table so that historical data does not get updated and modified and is easily accessible for comparisons.
 ### Step4: Data Preparation
-* In this the data collected in raw format is then preprocessed to make it less erroneous and more standard. For example, ‘AveragespeedofAnswer’ is computed, and the results are organized into data categories according to the calls offered and calls handled.
-* This step is essential to ensure the data will be clean and ready to offer good information during the analysis. Similarly other metrics were used in the rest of the datasets.
+* In this the data collected in raw format is then preprocessed to make it less erroneous and more standard. 
+* This step is essential to ensure the data will be clean and ready to offer good information during the analysis.
+* Similarly other metrics were used in the rest of the datasets.
 ### Step5: Data Ingestion
-* In this, raw data is in the form of call logs extracted from the city's 3-1-1 contact center records and loaded to Amazon S3 using AWS Data Pipeline.
+* In this, raw data is in the form of call logs extracted from the city's 3-1-1 service requests records and loaded to Amazon S3 using AWS Data Pipeline.
 * This configuration permits daily updating of current year data and ensures that the medium provides the most recent calls data.
-* It's set up to allow for regular bulk updates and live ingesting for real-time analytical purposes. 
+* It's set up to allow for regular bulk updates and live ingesting for real-time analytical purposes.
+
+
+
+
+
+
+
+
 ### Step6: Data Storage
 * In this the processed raw datasets are stored in Amazon S3/Redshift, making the processed data available for analysis.
 * The data storage phase also has data security measures, such as encryption, to prevent unauthorized access to the data by any unauthorized personnel.<br>
