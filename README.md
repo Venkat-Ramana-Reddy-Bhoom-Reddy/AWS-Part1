@@ -36,69 +36,45 @@ This is my documentation of the design & implementatio of City of Vancouver Data
 * In this, raw data is in the form of call logs extracted from the city's 3-1-1 service requests records and loaded to Amazon S3 using AWS Data Pipeline.
 * This configuration permits daily updating of current year data and ensures that the medium provides the most recent calls data.
 * It's set up to allow for regular bulk updates and live ingesting for real-time analytical purposes.
-
-
-
-
-
-
-
-
 ### Step6: Data Storage
 * In this the processed raw datasets are stored in Amazon S3/Redshift, making the processed data available for analysis.
 * The data storage phase also has data security measures, such as encryption, to prevent unauthorized access to the data by any unauthorized personnel.<br>
-![6-1 s3](https://github.com/user-attachments/assets/f8d302c4-a7ae-4012-b6c8-c8ee92d4061d)
-* The above image shows the data storage (S3) of 3-1-1 contact center call details.<br>
-![6-2 s3](https://github.com/user-attachments/assets/f74b98a4-8dd3-4679-b60b-8ace7951f043)
-* The above image shows the data storage (S3) of abandoned 3-1-1 call details.
+![figure 10](https://github.com/user-attachments/assets/cd60eb27-1b2f-41e1-a117-22f21720db68)
+* The above image display the details of “storage” for “Dataset 3” using ‘AWS-S3’.<br>
+![figure 11](https://github.com/user-attachments/assets/fa6e7ead-1def-4962-85c7-761b02855c0e)
+* The above image display the details of “storage” for “Dataset 3” using ‘AWS-S3’.
 ### Step7: Data Pipeline Design
 * In this an AWS Glue/Step Functions data pipeline is created for the movement of data, which means that data can be processed automatically.
 * All the processes, starting from the intake of data, processing it, storing it, and eventually analyzing it, are planned and in place to facilitate the movement of data and its subsequent processing.<br>
-![7-data pipeline preperation](https://github.com/user-attachments/assets/ff88012e-b444-424e-b44d-7c02e6b149b7)
-* The above image shows the data pipeline of 3-1-1 contact center call details.
+![appx003](https://github.com/user-attachments/assets/2dab7de3-fba9-497e-8554-f90a176ce0ee)
+* The above image shows the data pipeline of 3-1-1 service requests details.
 ### Step8 & 9:	Data Cleaning & Structuring
-* In Cleaning preliminary cleaning of the data was explained as crucial for the desired quality of the data set. This consists of removing such records as duplicates, methods utilized to eliminate data entry errors, and gaps in the values. The data must be adequately cleaned so that correct analysis and correct decisions can be made.
-* In Structuring the collecting data is arranged in a rather formal format, which can be easily filtered and analysed. This is done to sort the data into tables or partitions, all in an attempt to have the key attributes of the database organized appropriately, like in this manner; Date_Recorded, Call_Abandoned, and Call_Offered to enhance quick and accurate data retrieval.<br>
-![8-1-1 cleaning](https://github.com/user-attachments/assets/6da00ace-95b1-4d13-98bf-32402897af50)
-* The above image shows the data cleaning of 3-1-1 contact center call details.<br>
-![8-1-2 cleaning](https://github.com/user-attachments/assets/b634fb20-7814-4a6f-8498-f632804b4e43)
-* The above image shows the data cleaning of 3-1-1 contact center call details.<br>
-![8-2-1 cleaning](https://github.com/user-attachments/assets/d28e7b55-6f6c-4565-a87c-5fc11f5bf2a6)
-* The above image shows the data cleaning of abandoned calls of 3-1-1 center.<br>
-![8-2-2 cleaning](https://github.com/user-attachments/assets/3285c5d5-f151-494c-aec4-85b5cf884ce3)
-* The above image shows the data cleaning of abandoned calls of 3-1-1 center.<br>
-![8-3 cleaning](https://github.com/user-attachments/assets/a71bfa7a-ebea-4246-a2a1-a9dc3e939501)
-* The above image shows the job details of data cleaning of abandoned calls of 3-1-1 center.
+* In Cleaning preliminary cleaning of the data was explained as crucial for the desired quality of the data set.
+* This consists of removing such records as duplicates, methods utilized to eliminate data entry errors, and gaps in the values.
+* The data must be adequately cleaned so that correct analysis and correct decisions can be made.
+* In Structuring the collecting data is arranged in a rather formal format, which can be easily filtered and analysed.
+* This is done to sort the data into tables or partitions, all in an attempt to have the key attributes of the database organized appropriately to enhance quick and accurate data retrieval.<br>
+![figure 24](https://github.com/user-attachments/assets/ed227826-5c2d-4cb2-a8fe-62628c6bfcf4)
+* The above image display the details of “Schema Information” for “All Request Dataset” using ‘AWS-DataBrew’.<br>
+![figure 25](https://github.com/user-attachments/assets/ec401357-24b8-4a22-8ed0-71cb27bf5085)
+* The above image display the details of “Schema Information” for “Open Requests Dataset” using ‘AWS-DataBrew’.
 ### Step10: Data Pipeline Implementation
 * In this the data pipeline is the pipeline configuration for Data as explained above: This includes checking on the status of jobs and eliminating any issue that may occur during the job process. It also ensures that the data offered is well-processed and available for implementation promptly.<br>
-![10 pipeline 0001](https://github.com/user-attachments/assets/af862d5f-e911-4b15-be7e-5b03d09a74bd)
-* The above image shows the data ETL Pipeline for abandoned calls of 3-1-1 center.<br>
-![10 pipeline 0002](https://github.com/user-attachments/assets/1e4080fc-8667-4f23-99b9-471790ee1c10)
-* The above image shows the data ETL Pipeline for abandoned calls of 3-1-1 center.<br>
-![10 pipeline 0003](https://github.com/user-attachments/assets/30a3f61b-2b43-4e82-86ee-cd0884aa1c41)
-* The above image shows the data ETL Pipeline for abandoned calls of 3-1-1 center.<br>
-![10 pipeline 0004](https://github.com/user-attachments/assets/2159f077-a6a8-4924-9983-6d1f139d44f7)
-* The above image shows the data ETL Pipeline for abandoned calls of 3-1-1 center.
+![figure 30](https://github.com/user-attachments/assets/78560fb8-85e6-4aaf-b2f8-3a24e773f82c)
+* The above image display the details of “ETL information” for “All Request Dataset” using ‘AWS-Glue’.
 ### Step11:	Data Analysis
 * In this Data analysis is done, and to make queries such as those in the analytical question above, one can use Amazon Athena or QuickSight.<br>
-![11 analysis](https://github.com/user-attachments/assets/eb7b9bde-89f6-4701-8e56-a2875a77d1aa)
-* The above image shows the data analysis for abandoned calls of 3-1-1 center.
+![figure 34](https://github.com/user-attachments/assets/a61de548-95f1-4cd4-b157-a405917e771d)
+* The above image display the details of “Table” for “3-1-1 service request center Dataset” using ‘AWS-Athena’.
 ### Step 12: Data Visualization
 * These visualizations are ways the data analysis results are presented in an easily understood format. These renderings glance at the audiences by displaying a time series or the cross tab of trends over time or across kinds of work or regions.<br>
-![12 visualisation](https://github.com/user-attachments/assets/1bfd06ae-3733-4fb7-84a6-81dbd5405670)
-* The above image shows the data Visualization for abandoned calls of 3-1-1 center.
+![figure 38-1](https://github.com/user-attachments/assets/1630e3ce-6251-4feb-90f6-010efe61d4a0)
+* The above image display the details of “3-1-1 service request center Dataset” report using ‘Excel’.
+![figure 38](https://github.com/user-attachments/assets/f722f975-439a-4bb0-b1c0-e3f72b212e3f)
+* The above image display the details of “3-1-1 service request center Dataset” report using ‘Excel’.
 ### Step 13: Data Publishing
-* Data publishing can be defined as the grouping or disseminating of the analysis results to other parties(Alaimo et al.,2021). This could be in compressed files copied to an S3 bucket for consumption, pre-built and ready dashboards in QuickSight, or weekly, daily, or monthly summaries sent as email or dropped into a folder or S3 bucket.<br>
-![13-1 publishing](https://github.com/user-attachments/assets/791d8e64-c61b-4853-af72-272d9bbbefce)
-* The above image shows the data publishing for abandoned calls of 3-1-1 center.<br>
-![13-2 publishing](https://github.com/user-attachments/assets/aa688c4b-ffb3-4b88-a675-bec524891c1b)
-* The above image shows the data publishing for abandoned calls of 3-1-1 center.<br>
-![13-3 publishing](https://github.com/user-attachments/assets/70d37d26-9651-4192-8931-4237b89b3433)
-* The above image shows the data publishing for abandoned calls of 3-1-1 center.<br>
-![13-4 publishing](https://github.com/user-attachments/assets/35c82dca-5d29-41f2-8f62-00e60081d907)
-* The above image shows the data publishing for abandoned calls of 3-1-1 center.<br>
-![13-5 publishing](https://github.com/user-attachments/assets/b3b982e6-0493-4a2c-accf-c84be4682e21)
-* The above image shows the data publishing for abandoned calls of 3-1-1 center.
+* Data publishing can be defined as the grouping or disseminating of the analysis results to other parties.
+* This could be in compressed files copied to an S3 bucket for consumption, pre-built and ready dashboards in QuickSight, or weekly, daily, or monthly summaries sent as email or dropped into a folder or S3 bucket.
 ### Step14: Cost Estimation
 * The AWS Pricing Calculator was used to estimate the cost of setting up and the subsequent running of the data analytic platform.
 * It costs approximately $ 630.84 to process and analyze the business license data every month using Amazon S3, Athena, Glue, and Quick Sight.
