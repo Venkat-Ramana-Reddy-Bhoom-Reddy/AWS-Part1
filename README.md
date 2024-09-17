@@ -16,7 +16,7 @@ This is my documentation of the design & implementatio of City of Vancouver Data
 ## Datasets
 * The Dataset used is taken from [City of Vancouver Open Data Portal](https://opendata.vancouver.ca/explore/dataset/3-1-1-service-requests/information/?disjunctive.department&disjunctive.service_request_type&disjunctive.status&disjunctive.closure_reason&disjunctive.local_area&disjunctive.channel) for the category of "3-1-1 Service Request metrics"<br>
 [cumulative_3-1-1-service-requests_2023_open.xlsx](https://github.com/user-attachments/files/17021197/cumulative_3-1-1-service-requests_2023_open.xlsx)
- This dataset contains location information such as address or intersection where service was requested and the local area corresponding to the case (incident) location.
+* This dataset contains location information such as address or intersection where service was requested and the local area corresponding to the case (incident) location.
 ## Methodology:
 * The process involves different steps explained in detail below:
 ### Step1: Data Analytical Question Formulation
